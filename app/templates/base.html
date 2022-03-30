@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Aqeel Mohamed - CMSC447 Individual CRUD Project
+        </title>
+        <style> 
+            h1 { text-align:center;margin-bottom:0 }
+            h4 { text-align:left;margin-top:0; }
+            hr.break { margin: 1em;border-width: 2px }
+            table, th, td { border: 1px solid black; }
+            th { padding-right:0px }
+            td { padding: 10px; padding-right: 15px }
+            a { color: #2c87f0; }
+            a:visited { color: #2c87f0; }
+            a:hover {color: #1a61b3; }
+        </style>
+    </head>
+
+    <body>
+        <h1> Basic Crud Project </h1>
+        <hr class="break">
+        
+        <div>
+            Links: 
+                <a href="/home">Home</a>
+                <a href="{{ url_for('addStudent') }}">Add Student</a>
+                <a href="{{ url_for('addInstructor') }}">Add Instructor</a>
+                <a href="{{ url_for('addCourse') }}">Add Course</a>
+                <a href="{{ url_for('removeStudent') }}">Remove Student</a>
+                <a href="{{ url_for('removeInstructor') }}">Remove Instructor</a>
+                <a href="{{ url_for('removeCourse') }}">Remove Course</a>
+                <a href="{{ url_for('askForStudentID') }}">Student Schedule</a>
+        </div>
+
+        <hr class="break">
+        {% block content %}{% endblock %}
+
+        <p style="text-align: right; position: absolute; bottom:0; right:0; margin-right: 10px;"> by: Aqeel Mohamed </p>
+    </body>
+</html>

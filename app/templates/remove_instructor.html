@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4>Instructor List: </h4>
+        <div id="instructorList">
+            <table>
+                <tr>
+                    <th> ID </th>
+                    <th> Name </th>
+                </tr>
+
+                {% for instructor in insList %}
+                    <tr>
+                        <td> {{ instructor[0] }} </td>
+                        <td> {{ instructor[1] }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    <br>
+    
+    <h3> Remove Instructor </h3>
+    <p>Make sure ID that is being removed is in the table!</p>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.instructor_id.label  }} <br>
+            {{ form.instructor_id(size=32) }}
+        </p>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    <div id="instructorRemoved">
+        {% for instructor in get_flashed_messages() %}
+            {{instructor}}
+        {% endfor %}
+    </div>
+{% endblock %}

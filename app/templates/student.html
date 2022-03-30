@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form action="student.html" method="POST">
+        <label for="students"> Choose a student: </label>
+            <select name = "students" id="students">
+                {% for student in list %}
+                    <option value="{{ student }} ">{{student}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

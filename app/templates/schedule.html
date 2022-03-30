@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for teacher, class in list %}
+    <div><p>  {{teacher}} teaches {{class}} </p></div>
+    {% endfor %}
+    
+{% endblock %}

@@ -1,0 +1,61 @@
+<style>
+    td { text-align: center; }
+</style>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4> Name: {{ studentName[0][0] }} </h4>
+    <h4> Schedule: </h4>
+    {% if studentSchedule %}
+        <table style="margin-top: 0px;">            
+            <tr>
+                <th> Class </th>
+                <th> Grade </th>
+            </tr>
+
+            {% for item in studentSchedule %}
+            <tr>
+                <td> {{ item[2] }} ({{ item[1] }})</td>
+                <td> {{ item[3] }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="{{ url_for('addCourseToStudent') }}">Add Class</a>
+        <a href="{{ url_for('removeCourseFromStudent') }}">Remove Class</a>
+        <a href="{{ url_for('changeGradeInClass') }} ">Change Grade in Class</a>
+    {% else %}
+        <p> This student has not enrolled in any classes as of yet. Please enroll in a class using the 'Add Class' Link below.</p>
+        <br>
+        <a href="{{ url_for('addCourseToStudent') }}">Add Class</a>
+    {% endif %}
+
+    <h3> Change Grade in Class </h3>
+    <p> Must enter a valid course ID and valid grade (0-100)! </p>
+    
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.course_id.label  }} <br>
+            {{ form.course_id(size=32) }}
+        </p>
+
+        <p>
+            {{ form.grade.label  }} <br>
+            {{ form.grade(size=32) }}
+        </p>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    <div id="changeGradeInClass">
+        {% for grade in get_flashed_messages() %}
+            {{grade}} <br>
+        {% endfor %}
+    </div>
+
+{% endblock %}

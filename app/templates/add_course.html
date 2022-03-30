@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4>Instructor List: </h4>
+    <div id="lists">
+        <div id="instructorList">
+            <table style="float: left; margin-right:15px">
+                <tr>
+                    <th> ID </th>
+                    <th> Name </th>
+                </tr>
+
+                {% for instructor in insList %}
+                    <tr>
+                        <td> {{ instructor[0] }} </td>
+                        <td> {{ instructor[1] }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <h4>Course List: </h4>
+        <div id="courseList">
+            <table style="float: left; margin-right:15px">
+                <tr>
+                    <th> ID </th>
+                    <th> Title </th>
+                </tr>
+
+                {% for course in courseList %}
+                    <tr>
+                        <td> {{ course[0] }} </td>
+                        <td> {{ course[1] }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+    </div>
+    
+    <div id="force_text_down">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <h3> Add Course </h3>
+    <p>If course ID is not unique AND if instructor ID does not exist, NO success message will pop up on hitting the 'Add Course' Button </p>
+    
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.course_id.label  }} <br>
+            {{ form.course_id(size=32) }}
+        </p>
+
+        <p>
+            {{ form.instructor_id.label  }} <br>
+            {{ form.instructor_id(size=32) }}
+        </p>
+
+        <p>
+            {{ form.title.label  }} <br>
+            {{ form.title(size=32) }}
+        </p>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    <div id="courseAdded">
+        {% for instructor in get_flashed_messages() %}
+            {{instructor}} <br>
+        {% endfor %}
+    </div>
+{% endblock %}

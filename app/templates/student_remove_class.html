@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h4> Name: {{ studentName[0][0] }} </h4>
+    <br>
+    <h4> Schedule: </h4>
+    {% if studentSchedule %}
+        <table style="margin-top: 0px;">            
+            <tr>
+                <th> Class </th>
+                <th> Grade </th>
+            </tr>
+
+            {% for item in studentSchedule %}
+            <tr>
+                <td> {{ item[2] }} ({{ item[1] }})</td>
+                <td> {{ item[3] }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p> This student has not enrolled in any classes as of yet. Please enroll in a class using the 'Add Class' Link in the Schedule Tab.</p>
+        
+    {% endif %}
+
+    <h3> Remove Course From Student </h3>
+    <p> Must enter a valid course ID! </p>
+    
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.course_id.label  }} <br>
+            {{ form.course_id(size=32) }}
+        </p>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    <div id="removeCourseFromStudent">
+        {% for instructor in get_flashed_messages() %}
+            {{instructor}} <br>
+        {% endfor %}
+    </div>
+
+    <br><br>
+    <a href="{{ url_for('studentSchedule') }}">Back To Schedule</a>
+    <a href="{{  url_for('removeCourseFromStudent')  }}">Remove Class</a>
+{% endblock %}

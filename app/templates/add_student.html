@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4>Student List: </h4>
+        <div id="studentList">
+            <table>
+                <tr>
+                    <th> ID </th>
+                    <th> Name </th>
+                </tr>
+
+                {% for student in studentList %}
+                    <tr>
+                        <td> {{ student[0] }} </td>
+                        <td> {{ student[1] }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    <br>    
+    <h3> Add Student </h3>
+    <p>If ID is not unique, no success message will pop up on hitting the 'Add Student' Button </p>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.student_id.label  }} <br>
+            {{ form.student_id(size=32) }}
+        </p>
+
+        <p>
+            {{ form.name.label  }} <br>
+            {{ form.name(size=32) }}
+        </p>
+
+        <p>
+            {{ form.credits_earned.label  }} <br>
+            {{ form.credits_earned(size=32) }}
+        </p>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    <div id="studentAdded">
+        {% for student in get_flashed_messages() %}
+            {{student}}
+        {% endfor %}
+    </div>
+{% endblock %}

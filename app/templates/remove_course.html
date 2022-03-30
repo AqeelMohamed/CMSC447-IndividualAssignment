@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4>Course List: </h4>
+    <div id="courseList">
+        <table>
+            <tr>
+                <th> ID </th>
+                <th> Title </th>
+            </tr>
+
+            {% for course in courseList %}
+                <tr>
+                    <td> {{ course[0] }} </td>
+                    <td> {{ course[1] }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+
+    <h3> Remove Course </h3>
+    <p>Make sure ID that is being removed is in the table!</p>
+    
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.course_id.label  }} <br>
+            {{ form.course_id(size=32) }}
+        </p>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    <div id="courseRemoved">
+        {% for course in get_flashed_messages() %}
+            {{course}}
+        {% endfor %}
+    </div>
+{% endblock %}
